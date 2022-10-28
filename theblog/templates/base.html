@@ -20,10 +20,61 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-             
+
+             {%if cat_menu%}
+             <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                CATEGORIAS
+              </a>
+              <ul class="dropdown-menu">
+                
+               
+            
+
+                  {%for item in cat_menu%}
+                    <a class="dropdown-item" href="{%url "category" item|slugify%}">{{item}}</a>
+                  {%endfor%}
+
+                  
+                </ul>
+              </li>
+            {%else%}
+       
+            <li class="nav-item">
+              <a class="nav-link" href={%url "category-list"%}>CATEGORIAS</a>
+            <li>
+            {%endif%}
+
+
+
+              {%if user.is_authenticated%}
+                <li class="nav-item">
+                  <a class="nav-link" href={%url "add_post"%}>Agregar Post</a>
+                <li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href={%url "logout"%}>Logout</a>
+                <li> 
+
+                <li class="nav-item">
+                  <a class="nav-link" href={%url "add_category"%}>Clasificar</a>
+                <li> 
+
+              {%else%}
               <li class="nav-item">
-                <a class="nav-link" href={%url "add_post"%}>Agregar Post</a>
+                  <a class="nav-link" href={%url "register"%}>Resistrarse</a>
               <li>
+              
+              <li class="nav-item">
+                  <a class="nav-link" href={%url "login"%}>Login</a>
+              <li>
+
+              {%endif%}
+              
+             
+          
+
+            
           
              
             </ul>
