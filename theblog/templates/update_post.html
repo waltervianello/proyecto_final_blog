@@ -3,7 +3,7 @@
 {%block content%}
 
 {%if user.is_authenticated%}
-    {%if user.id==post.author.id%}
+    {% if user.id == post.author.id %}
         <h2>Actualizar el Post...</h2>
         <br/><br>
         <div class="form-group">

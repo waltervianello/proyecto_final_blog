@@ -11,6 +11,10 @@
         {{form.as_p}}
         <button class="btn btn-secondary">Post</button>
     </div>
+    <script>
+        var name="{{ user.id }}";
+        document.getElementById("Walter").value=name;
+    </script>
 {%else%}
 Usted no tiene permitido estar aqui!
 

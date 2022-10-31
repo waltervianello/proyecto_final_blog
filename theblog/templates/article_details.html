@@ -11,7 +11,7 @@
 
     
         {%if user.is_authenticated%}
-            {%if user.id==post.author.id%}
+            {% if user.id == post.author.id %}
                 -<a href={%url "update_post" post.pk%}>(Editar)</a>
 
                 <a href={%url "delete_post" post.pk%}>(Borrar)</a>
@@ -19,10 +19,37 @@
         {%endif%}
 
     </small><br/>
-    <hr><br/>
+    <hr>
+    <br/>
     {{post.body|safe}}
 
     <br/><br/>
-    <a href="{% url "home" %}" class="btn btn-secondary">Volver</button>
+    <a href="{% url "home" %}" class="btn btn-secondary">Volver</a>
+
+    <br/><br/>
+    <hr>
+    <br/>
+
+
+    <form action="{% url "like_post" post.pk %}"
+    method = "POST">
+        {% csrf_token %}
+    {% if user.is_authenticated %}
+        {% if liked %}
+            <button type="submit",name="post_id",value
+            ="{{ post.id }}",class="btn btn-danger btn-sm">Unlike</button>
+        {% else %}
+            <button type="submit",name="post_id",value
+            ="{{ post.id }}",class="btn btn-primary btn-sm">Like</button>
+        {% endif %}
+    {% else %}
+        <small><a href={% url "login" %}>Login</a>
+        para Like</small>
+    {% endif %}
+
+        - {{ total_likes }} Likes
+
+    </form>
+
 
 {% endblock %}   
