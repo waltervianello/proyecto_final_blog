@@ -10,7 +10,7 @@
     <li><a href={%url "article_detail" post.pk%}>{{post.title}}</a>
         -<a href={%url "category" post.category|slugify%}>{{post.category}}</a>
         -{{post.author.first_name}}{{post.author.last_name}}
-        -{{post.post_date}}- <small>
+        -{{post.post_date}}-<small>
 
 
         {%if user.is_authenticated%}
@@ -19,7 +19,7 @@
         {%endif%}
 
         </small><br/>
-        {{post.body|slice:":500"|safe}}</li>
+        {{ post.snippet }}</li>
 
 {%endfor%} 
 </ul>
