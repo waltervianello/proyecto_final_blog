@@ -21,9 +21,11 @@
     </small><br/>
     <hr>
     <br/>
+
     {%if post.header_image %}
         <img src="{{ post.header_image.url }}">
     {% endif %}
+    
     {{ post.body|safe }}
 
     <br/><br/>
@@ -34,7 +36,7 @@
     <br/>
 
 
-    <form action="{% url "like_post" post.pk %}"
+    <form action="{% url 'like_post' post.pk %}"
     method = "POST">
         {% csrf_token %}
     {% if user.is_authenticated %}
